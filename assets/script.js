@@ -6,6 +6,21 @@
 var CitySearchForm = document.querySelector('#city=search');
 var termSpan = document.querySelector('#term')
 
+ //get the weather information for the city searched by the user
+ function getGeoWeather(lat, lon) {
+    fetch('https://api.openweathermap.org/data/2.5/forecast?appid=73ae999c41edfcbe7e963963ee76ff49&lat=' + lat + '&lon' + lon +'&units=imperial')
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+    })
+  };
+//convert city name to lat and lon
+  function getCityGeoData() {
+    fetch()
+  }
+
 
 function toJSON(response) {
     return response.json();
@@ -41,16 +56,6 @@ function toJSON(response) {
         .appendChild(cardBodyEl)
         .append(h3El, pEl, aEl);
     }
-  }
-  //get the city information for the city searched by the user
-  function getGeoData(lat, lon) {
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + Input.value + '&appid=73ae999c41edfcbe7e963963ee76ff49')
-    .then(function(response) {
-        return response.json();
-    })
-    fetch(url)
-      .then(toJSON)
-      .then(displayCards);
   }
   
   function init() {
