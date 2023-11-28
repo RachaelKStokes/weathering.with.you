@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,26 @@
     <script src="./assets/script.js"></script>
     <link rel="stylesheet" href="./assets/bootstrap.css" />
 </head>
+
 <body>
     <main class="container-fluid text-light min-vh-100">
-        <div class ="row">
-            <div class="col col-md-4">
-                <div class="p-3">
-                    <h2>5 Day Weather Forecast in Your City!</h2>
-                    <form id="city-search"></form>
-                    <div>
-                        <input type="text" placeholder="Search Your City Now!" class = "form-control" name="city" id="city">
-                    </div>
+        <div class="row">
+        <div class="col col-md-4">
+        <div class="p-3">
+            <h2>5 Day Weather Forecast in Your City!</h2>
+            <form id="city-search">
+                <div class="mb-3">
+                    <input type="text" placeholder="Search Your City Now!" class="form-control" name="city" id="city">
                 </div>
-            </div>
+                <button type="submit" class="submit-btn">Search</button>
+            </form>
+        </div>
+        </div>
+        <div class="col col-md-8"></div>
+            <h2>5 Day Forcast For <span id="term"></span></h2>
+            <div class="results"></div>
         </div>
     </main>
 </body>
+
 </html>
