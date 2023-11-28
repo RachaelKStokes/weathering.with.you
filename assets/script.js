@@ -42,10 +42,12 @@ function toJSON(response) {
         .append(h3El, pEl, aEl);
     }
   }
-  
-  function fetchData(city) {
-    var url = 'hapi.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={73ae999c41edfcbe7e963963ee76ff49}ttps://www.loc.gov/' + ('search') + '/?q=' + city + '&fo=json';
-  
+  //get the city information for the city searched by the user
+  function getGeoData(lat, lon) {
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + Input.value + '&appid=73ae999c41edfcbe7e963963ee76ff49')
+    .then(function(response) {
+        return response.json();
+    })
     fetch(url)
       .then(toJSON)
       .then(displayCards);
