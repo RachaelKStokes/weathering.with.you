@@ -5,10 +5,11 @@ var resultsContainer = document.querySelector('#results');
 var termSpan = document.querySelector('#term');
 var cityInput = document.querySelector('#city');
 var citySearchForm = document.querySelector('#city-search');
+//var Time = dayjs().hour(12);
 
  //get the weather information for the city searched by the user
  function getGeoWeather(lat, lon) {
-    fetch('https://api.openweathermap.org/data/2.5/forecast?appid=73ae999c41edfcbe7e963963ee76ff49&lat=' + lat + '&lon=' + lon +'&units=imperial')
+    fetch('https://api.openweathermap.org/data/2.5/forecast?appid=73ae999c41edfcbe7e963963ee76ff49&lat=' + lat + '&lon=' + lon + '&units=imperial')
     .then(function(response) {
         return response.json();
     })
@@ -17,14 +18,16 @@ var citySearchForm = document.querySelector('#city-search');
     })
   };
 //convert city name to lat and lon
-  function getCityGeoData() {
-    fetch('http://api.openweathermap.org/geo/1.0/direct?appdid=73ae999c41edfcbe7e963963ee76ff49&limit=1&q=' + cityInput )
+  function getCityGeoData(cityInput) {
+    fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityInput + '&limit=5&appid=73ae999c41edfcbe7e963963ee76ff49' )
     .then(function(response) {
         return response.json();
     })
     .then(function(data) {
         console.log(data);
-        getGeoWeather(data.lat, data.lon);
+        var lat = data[0].lat;
+        var lon = data[0].lon;
+        getGeoWeather(lat, lon);
     })
   }
 
@@ -48,19 +51,15 @@ var citySearchForm = document.querySelector('#city-search');
       h3El.textContent = result.title;
   
       var pEl = document.createElement('p');
-      pEl.classList.add('card-text');
-      pEl.textContent = result.description?.toString();
+      pEl.classList.add('card-temp');
+      pEl.textContent = result.temp.toString();
   
-      var aEl = document.createElement('a');
-      aEl.classList.add('btn', 'btn-primary');
-      aEl.textContent = 'Learn more';
-      aEl.href = result.url;
-      aEl.target = "_blank";
+     
   
       resultsContainer
         .appendChild(cardEl)
         .appendChild(cardBodyEl)
-        .append(h3El, pEl, aEl);
+        .append(h3El, pEl);
     }
   }
   
@@ -68,7 +67,6 @@ var citySearchForm = document.querySelector('#city-search');
     if (resultsContainer) {
       var params = new URLSearchParams(location.search);
       var city = params.get('city');
-      //var format = params.get('format');
       fetchData(city);
     }
   }
