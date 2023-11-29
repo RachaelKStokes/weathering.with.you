@@ -18,13 +18,17 @@ var termSpan = document.querySelector('#term')
   };
 //convert city name to lat and lon
   function getCityGeoData() {
-    fetch()
+    fetch('http://api.openweathermap.org/geo/1.0/direct?appdid=73ae999c41edfcbe7e963963ee76ff49&limit=1&q=' + city )
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+        getGeoWeather(data[0].lat, data[0].lon);
+    })
   }
 
 
-function toJSON(response) {
-    return response.json();
-  }
   
   function displayCards(data) {
     resultsContainer.innerHTML = null;
