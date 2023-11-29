@@ -1,10 +1,11 @@
 //weather dashboard
 
 //variables
-var resultsContainer = document.querySelector('#results');
+var resultsContainer = document.querySelector('.results');
 var termSpan = document.querySelector('#term');
 var cityInput = document.querySelector('#city');
 var citySearchForm = document.querySelector('#city-search');
+var clearBtn = document.getElementById('clear')
 //var Time = dayjs().hour(12);
 
  //get the weather information for the city searched by the user
