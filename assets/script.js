@@ -1,10 +1,10 @@
 //weather dashboard
-//only store city names - array of strings
-//two of the same box in the middle but one displays one weather api and one displays the 5 day forcast
 
 //variables
-var CitySearchForm = document.querySelector('#city=search');
-var termSpan = document.querySelector('#term')
+var resultsContainer = document.querySelector('#results');
+var termSpan = document.querySelector('#term');
+var cityInput = document.querySelector('#city');
+var citySearchForm = document.querySelector('#city-search');
 
  //get the weather information for the city searched by the user
  function getGeoWeather(lat, lon) {
@@ -18,7 +18,7 @@ var termSpan = document.querySelector('#term')
   };
 //convert city name to lat and lon
   function getCityGeoData() {
-    fetch('http://api.openweathermap.org/geo/1.0/direct?appdid=73ae999c41edfcbe7e963963ee76ff49&limit=1&q=' + city )
+    fetch('http://api.openweathermap.org/geo/1.0/direct?appdid=73ae999c41edfcbe7e963963ee76ff49&limit=1&q=' + cityInput )
     .then(function(response) {
         return response.json();
     })
@@ -26,10 +26,18 @@ var termSpan = document.querySelector('#term')
         console.log(data);
         getGeoWeather(data[0].lat, data[0].lon);
     })
+    .then(displayCards)
   }
 
+  getCityGeoData();
 
-  
+ // function handleSearch(event) {
+ //   event.preventDefault();
+  //  var type = 'search';
+  //}
+
+
+
   function displayCards(data) {
     resultsContainer.innerHTML = null;
     termSpan.textContent = data.search.query;
