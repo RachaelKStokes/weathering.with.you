@@ -8,7 +8,7 @@ var citySearchForm = document.querySelector('#city-search');
 
  //get the weather information for the city searched by the user
  function getGeoWeather(lat, lon) {
-    fetch('https://api.openweathermap.org/data/2.5/forecast?appid=73ae999c41edfcbe7e963963ee76ff49&lat=' + lat + '&lon' + lon +'&units=imperial')
+    fetch('https://api.openweathermap.org/data/2.5/forecast?appid=73ae999c41edfcbe7e963963ee76ff49&lat=' + lat + '&lon=' + lon +'&units=imperial')
     .then(function(response) {
         return response.json();
     })
@@ -24,17 +24,11 @@ var citySearchForm = document.querySelector('#city-search');
     })
     .then(function(data) {
         console.log(data);
-        getGeoWeather(data[0].lat, data[0].lon);
+        getGeoWeather(data.lat, data.lon);
     })
-    .then(displayCards)
   }
 
   getCityGeoData();
-
- // function handleSearch(event) {
- //   event.preventDefault();
-  //  var type = 'search';
-  //}
 
 
 
