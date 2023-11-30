@@ -22,11 +22,11 @@ function getGeoWeather(lat, lon) {
     })
     .then(function(data) {
         console.log(data);
-        var weatherNow = data.list[0].main.temp;
+        var weatherNow = (data.list[0].main.temp);
         console.log(weatherNow);
         var weatherNowPel = document.createElement("p");
         weatherNowPel.textContent = weatherNow;
-        forecast.appendChild(weatherNowPel);
+        day1.appendChild(weatherNowPel);
         termSpan.textContent = data.city.name;
         
     })
