@@ -33,36 +33,6 @@ var clearBtn = document.getElementById('#clear');
   }
 
   getCityGeoData();
-
-
-
-  function displayCards(data) {
-    resultsContainer.innerHTML = null;
-    termSpan.textContent = data.search.query;
-  
-    for (var result of data.results) {
-      var cardEl = document.createElement('div');
-      cardEl.classList.add('card', 'mb-3', 'p-3', 'bg-light', 'text-dark');
-  
-      var cardBodyEl = document.createElement('div');
-      cardBodyEl.classList.add('card-body');
-  
-      var h3El = document.createElement('h3');
-      h3El.classList.add('card-title');
-      h3El.textContent = result.title;
-  
-      var pEl = document.createElement('p');
-      pEl.classList.add('card-temp');
-      pEl.textContent = result.temp.toString();
-  
-     
-  
-      resultsContainer
-        .appendChild(cardEl)
-        .appendChild(cardBodyEl)
-        .append(h3El, pEl);
-    }
-  }
   
   function init() {
     if (resultsContainer) {
