@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FiveDayWeatherForecast</title>
-    <script src="./assets/script.js"></script>
+    <script defer src="./assets/script.js"></script>
     <link rel="stylesheet" href="./assets/bootstrap.css" />
 </head>
 
@@ -35,8 +35,12 @@
         <div class = "results"></div>
             <div class="card border-secondary mb-3">
                 <h3 class="card-header">5 Day Forcast For <span id="term"></span></h3>
-                <div class="card-body">
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="card-body" id="day-forecast">
+                  <div class = "col" id="day1"></div>
+                  <div class = "col" id="day2"></div>
+                  <div class = "col" id="day3"></div>
+                  <div class = "col" id="day4"></div>
+                  <div class = "col" id="day5"></div>
                 </div>
         </div>
         </div>
