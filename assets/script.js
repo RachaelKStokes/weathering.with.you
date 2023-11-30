@@ -2,10 +2,10 @@
 
 //variables
 var resultsContainer = document.querySelector('.results');
-var searchBtn = document.getElementById('#search-button');
+var searchBtn = document.getElementById('search-button');
 var termSpan = document.querySelector('#term');
 var citySearchForm = document.querySelector('#city-search');
-var clearBtn = document.getElementById('#clear');
+var clearBtn = document.getElementById('clear');
 //var Time = dayjs().hour(12);
 
 //get the weather information for the city searched by the user
@@ -19,7 +19,7 @@ function getGeoWeather(lat, lon) {
     })
 };
 //convert city name to lat and lon
-var cityInput = document.querySelector('#city').value;
+var cityInput = document.querySelector('#city');
   function getCityGeoData(cityInput) {
     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityInput + '&limit=5&appid=73ae999c41edfcbe7e963963ee76ff49' )
     .then(function(response) {
@@ -36,15 +36,5 @@ var cityInput = document.querySelector('#city').value;
             }
         });
     };
-
-  getCityGeoData();
   
-  function init() {
-    if (resultsContainer) {
-      var params = new URLSearchParams(location.search);
-      var city = params.get('city');
-      fetchData(city);
-    }
-  }
-  
-  .addEventListener('click', getGeoWeather);
+  addEventListener('click', getGeoWeather);
