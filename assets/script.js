@@ -16,11 +16,14 @@ function getGeoWeather(lat, lon) {
     })
     .then(function(data) {
         console.log(data);
+        var weatherNow = data.list[0].main.temp;
+        var weatherNowPel = document.createElement("p");
+        weatherNowPel.textContent = weatherNow
     })
 };
 //convert city name to lat and lon
-var cityInput = document.querySelector('#city');
-  function getCityGeoData(cityInput) {
+function getCityGeoData(cityInput) {
+    var cityInput = document.querySelector('#city');
     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityInput + '&limit=5&appid=73ae999c41edfcbe7e963963ee76ff49' )
     .then(function(response) {
         return response.json();
