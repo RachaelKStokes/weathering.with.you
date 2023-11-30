@@ -2,14 +2,14 @@
 
 //variables
 var resultsContainer = document.querySelector('.results');
+var searchBtn = document.getElementById('#search-button');
 var termSpan = document.querySelector('#term');
-var cityInput = document.querySelector('#city');
 var citySearchForm = document.querySelector('#city-search');
 var clearBtn = document.getElementById('#clear');
 //var Time = dayjs().hour(12);
 
- //get the weather information for the city searched by the user
- function getGeoWeather(lat, lon) {
+//get the weather information for the city searched by the user
+function getGeoWeather(lat, lon) {
     fetch('https://api.openweathermap.org/data/2.5/forecast?appid=73ae999c41edfcbe7e963963ee76ff49&lat=' + lat + '&lon=' + lon + '&units=imperial')
     .then(function(response) {
         return response.json();
@@ -17,8 +17,9 @@ var clearBtn = document.getElementById('#clear');
     .then(function(data) {
         console.log(data);
     })
-  };
+};
 //convert city name to lat and lon
+var cityInput = document.querySelector('#city').value;
   function getCityGeoData(cityInput) {
     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityInput + '&limit=5&appid=73ae999c41edfcbe7e963963ee76ff49' )
     .then(function(response) {
@@ -26,11 +27,15 @@ var clearBtn = document.getElementById('#clear');
     })
     .then(function(data) {
         console.log(data);
-        var lat = data[0].lat;
-        var lon = data[0].lon;
-        getGeoWeather(lat, lon);
-    })
-  }
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i].local_names.en);
+                var lat = data[i].lat;
+                console.log(lat);
+                var lon = data[i].lon;
+                console.log(lon);
+            }
+        });
+    };
 
   getCityGeoData();
   
@@ -42,4 +47,4 @@ var clearBtn = document.getElementById('#clear');
     }
   }
   
-  document.addEventListener('DOMContentLoaded', init);
+  .addEventListener('click', getGeoWeather);
